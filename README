@@ -1,0 +1,10 @@
+====== TEMA 2 POO - MINICAD - README =======
+    Pentru implementarea am folosit visitor's pattern astfel: formele sunt obiectele vizitate, iar vizitatorii sunt cei care le deseneaza. De asemeana, am implementat Singleton Pattern si o clasa ShapeFactory pentru a genera formele desenate. 
+    -SHAPE:
+    Interfata folosita pentru a dezvolta clasele formelor. Aceasta iterfata permite vizitarea de catre Drawer.
+    Toate celelalte clase(Canvas, Line, Circle, Triangle, etc.) o dezvolta, insa fiecare are campuri si metode diferita(pentru linie nu avea sens sa retin n puncte, si doar doua, in timp ce pentru cerc avea sens sa retin doar unul). 
+    -DRAWER:
+    Interfata ce permite vizitarea formelor. Din aceasta am dezvoltat doua clase, DrawInt(pentru colorarea interiorului) si DrawExt(pentru contur). 
+    DrawExt foloseste pentru toate formele mai putin Circle algoritmul Bresenham pentru linii. Pentru Circle am folosit algoritmul Bresenham specific. In momentul in care desenez(setez) un pixel, verific si daca acesta este situat pe Canvas sau in afara lui, nu anticipez daca o forma iese din canvas, pentru usurinta implementarii.
+    DrawInt foloseste un algoritm de tip FloodFill, insa nu recursiv, ci folosind o Coada. Adaug in coada fiecare pixel care indeplineste urmatoarele conditii: este situat pe canvas, nu are culoarea conturului formei si nu are deja culoarea interiorului(nu trec de doua ori prin acelasi punct). De asemenea, punctul de inceput il reprezinta centru de greutate al figurii.
+    -POINT: clasa folosita pentru a retine mai usor perechile (x, y), reprezentand coordonatele unui pixel.
